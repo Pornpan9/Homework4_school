@@ -1,15 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"github.com/Pornpan9/Homework4_school/todo"
+	"github.com/Pornpan9/Homework4_school/database"
+	"github.com/gin-gonic/gin"
 )
 
-
 func main() {
-	
-	a:= Todo{}
 
-	fmt.Println("Hellow Golang %#v", a)
+	db := database.database{}
+	db.InitialDB()
+	
+router := gin.Default()
+api := router.Group("/api")
+api.GET("/todos", todo.GetHandler)
+router.Run(":1234")
 
 }
